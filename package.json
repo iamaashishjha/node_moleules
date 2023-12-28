@@ -1,0 +1,56 @@
+{
+  "name": "node_moleules",
+  "version": "1.0.0",
+  "description": "My Moleculer-based microservices project",
+  "scripts": {
+    "dev": "ts-node ./node_modules/moleculer/bin/moleculer-runner.js --repl --hot services/**/*.service.js",
+    "start": "moleculer-runner",
+    "cli": "moleculer connect NATS",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint services",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down"
+  },
+  "keywords": [
+    "microservices",
+    "moleculer"
+  ],
+  "author": "",
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "eslint": "^8.25.0",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "moleculer-repl": "^0.7.3",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "extract-files": "^13.0.0",
+    "moleculer": "^0.14.32",
+    "moleculer-apollo-server": "^0.3.7",
+    "moleculer-db": "^0.8.25",
+    "moleculer-db-adapter-mongo": "^0.4.15",
+    "moleculer-http-client": "^0.4.2",
+    "moleculer-web": "^0.10.4",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.5",
+    "nats": "^2.7.1",
+    "node-fetch": "^3.3.2",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">= 16.x.x"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  }
+}

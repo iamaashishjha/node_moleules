@@ -1,0 +1,8 @@
+[2023-12-26T04:29:46.847Z] INFO  ethan-pc-13800/BROKER: Moleculer v0.14.32 is starting...
+[2023-12-26T04:29:46.857Z] INFO  ethan-pc-13800/BROKER: Namespace: <not defined>
+[2023-12-26T04:29:46.858Z] INFO  ethan-pc-13800/BROKER: Node ID: ethan-pc-13800
+[2023-12-26T04:29:46.861Z] INFO  ethan-pc-13800/REGISTRY: Strategy: RoundRobinStrategy
+[2023-12-26T04:29:46.863Z] INFO  ethan-pc-13800/REGISTRY: Discoverer: LocalDiscoverer
+[2023-12-26T04:29:46.886Z] INFO  ethan-pc-13800/BROKER: Serializer: JSONSerializer
+[2023-12-26T04:29:46.936Z] INFO  ethan-pc-13800/BROKER: Validator: FastestValidator
+[2023-12-26T04:29:46.943Z] INFO  ethan-pc-13800/BROKER: Registered 14 middleware(s).
