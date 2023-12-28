@@ -12,9 +12,12 @@ class AddressManager {
          *
          * ### WARNING ###
          */
-
+		// console.log(new Date(), ": Store flushed Address Store");
+        // const store = Store.addresses;
+		// // store = [];
+        // Store.addresses = [];
+        // console.log(new Date(), ": Store flushed Address Store");
         console.log(new Date(), ": Connecting MySQL Address Manager");
-
         const conn = await mysql.createConnection({
             host: process.env.DB_HOST,
             user: process.env.DB_USERNAME,
@@ -26,9 +29,9 @@ class AddressManager {
 
         const [result] = await conn.execute(AddressFetcher.query);
         AddressFetcher.callback(result, Store);
+        // AddressFetcher.callback(result, store);
+        // AddressFetcher.callback(result, Store.addresses);
 
-        // console.log("Store Data at Init Address Manager");
-        // console.log(Store.addresses);
         await conn.end();
         console.log(new Date(), ": Closed MySQL Connection Address Manager");
     }

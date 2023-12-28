@@ -49,8 +49,8 @@ const AddressFetcher = {
         LIMIT 100
     ;`,
     callback: (rows, store) => {
-        // console.log("Address Query Result => ", rows);
         store.addresses = rows;
+        // store = rows;
     },
 };
 
