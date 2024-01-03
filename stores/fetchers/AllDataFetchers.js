@@ -29,7 +29,7 @@ const RegionsFetcher = {
 
 const CitiesFetcher = {
     query_name: "CitiesFetcher",
-    query: `SELECT name as city_name FROM cities;`,
+    query: `SELECT name as city_name FROM cities LIMIT 100;`,
     callback: (rows, store) => {
         store.cities = rows;
     },

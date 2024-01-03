@@ -1,5 +1,8 @@
 "use strict";
-import {BrokerOptions, Errors, MetricRegistry, ServiceBroker} from "moleculer";
+const {BrokerOptions, Errors, MetricRegistry, ServiceBroker} = require("moleculer");
+
+const dotenv = require("dotenv");
+dotenv.config();
 /**
  * Moleculer ServiceBroker configuration file
  *
@@ -61,7 +64,7 @@ module.exports = {
 	// Note: During the development, you don't need to define it because all services will be loaded locally.
 	// In production you can set it via `TRANSPORTER=nats://localhost:4222` environment variable.
 	// transporter: null, //"NATS"
-	transporter: "NATS",
+	transporter: null,
 
 	// Define a cacher.
 	// More info: https://moleculer.services/docs/0.14/caching.html
@@ -88,7 +91,7 @@ module.exports = {
 		// Backoff factor for delay. 2 means exponential backoff.
 		factor: 2,
 		// A function to check failed requests.
-		check: (err: Errors.MoleculerError) => err && !!err.retryable
+		check: (err) => err && !!err.retryable
 	},
 
 	// Limit of calling level. If it reaches the limit, broker will throw an MaxCallLevelError error. (Infinite loop protection)
@@ -135,7 +138,7 @@ module.exports = {
 		// Number of milliseconds to switch from open to half-open state
 		halfOpenTime: 10 * 1000,
 		// A function to check failed requests.
-		check: (err: Errors.MoleculerError) => err && err.code >= 500
+		check: (err) => err && err.code >= 500
 	},
 
 	// Settings of bulkhead feature. More info: https://moleculer.services/docs/0.14/fault-tolerance.html#Bulkhead
@@ -155,7 +158,7 @@ module.exports = {
 
 	// Enable/disable built-in metrics function. More info: https://moleculer.services/docs/0.14/metrics.html
 	metrics: {
-		enabled: true,
+		enabled: false,
 		// Available built-in reporters: "Console", "CSV", "Event", "Prometheus", "Datadog", "StatsD"
 		reporter: {
 			type: "Prometheus",
@@ -165,7 +168,7 @@ module.exports = {
 				// HTTP URL path
 				path: "/metrics",
 				// Default labels which are appended to all metrics labels
-				defaultLabels: (registry: MetricRegistry) => ({
+				defaultLabels: (registry) => ({
 					namespace: registry.broker.namespace,
 					nodeID: registry.broker.nodeID
 				})
@@ -199,17 +202,17 @@ module.exports = {
 	replCommands: null,
 
 	// Called after broker created.
-	created(brokerConfig: BrokerOptions) {
+	created(brokerConfig) {
 
 	},
 
 	// Called after broker started.
-	async started(brokerConfig: BrokerOptions) {
+	async started(brokerConfig) {
 
 	},
 
 	// Called after broker stopped.
-	async stopped(brokerConfig: BrokerOptions) {
+	async stopped(brokerConfig) {
 
 	}
 };

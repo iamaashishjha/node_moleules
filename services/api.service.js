@@ -17,7 +17,7 @@ module.exports = {
 	/** @type {ApiSettingsSchema} More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html */
 	settings: {
 		// Exposed port
-		port: process.env.PORT || 3000,
+		port: process.env.PORT || 8000,
 
 		// Exposed IP
 		ip: "0.0.0.0",
@@ -28,13 +28,24 @@ module.exports = {
 		routes: [
 			{
 				path: "/api",
-
+				// onError(req, res, err) {
+				// 	console.log("On Error Call ################################");
+				// 	res.setHeader("Content-Type", "application/json; charset=utf-8");
+				// 	res.writeHead(500);
+				// 	res.end(JSON.stringify(err));
+				// },
 				whitelist: [
 					"**"
 				],
 
 				// Route-level Express middlewares. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Middlewares
-				use: [],
+				use: [
+					// function (err, req, res, next) {
+					// 	console.log(Date.now(), 'Route Level Middleware ')
+					// 	this.logger.error("Error is occured in middlewares!");
+					// 	this.sendError(req, res, err);
+					// }
+				],
 
 				// Enable/disable parameter merging method. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Disable-merging
 				mergeParams: true,
@@ -103,10 +114,13 @@ module.exports = {
 		// Do not log client side errors (does not log an error response when the error.code is 400<=X<500)
 		log4XXResponses: false,
 		// Logging the request parameters. Set to any log level to enable it. E.g. "info"
-		logRequestParams: null,
+		// logRequestParams: null,
+		// Logging request parameters with 'info' level
+		logRequestParams: "info",
 		// Logging the response data. Set to any log level to enable it. E.g. "info"
+		// logResponseData: null,
+		// Logging response data with 'debug' level
 		logResponseData: null,
-
 
 		// Serve assets from "public" folder. More info: https://moleculer.services/docs/0.14/moleculer-web.html#Serve-static-files
 		assets: {
@@ -114,6 +128,26 @@ module.exports = {
 
 			// Options to `server-static` module
 			options: {}
+		},
+
+		// Global error handler
+		onError(req, res, err) {
+			console.log("On Error Call ################################");
+			console.warn("Complete Error Call ################################");
+			console.error(err);
+			console.warn("Error Code => #########################");
+			console.error(err.code);
+			console.warn("Error Type => #########################");
+			console.error(err.type);
+			console.warn("Error Data => #########################");
+			console.error(err.data);
+			console.warn("Response => #########################");
+			console.log(res.code);
+			// res.setHeader("Content-Type", "text/plain");
+			// res.writeHead(err.code || 500);
+			// res.end("Global error: " + err.message);
+			// throw new Error("Oops! Our sincerest apologies—an internal server error occurred. Please try again later. Thank you for your patience!");
+
 		}
 	},
 

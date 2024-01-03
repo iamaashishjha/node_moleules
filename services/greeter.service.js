@@ -77,13 +77,13 @@ module.exports = {
 	 * Events
 	 */
 	events: {
-		"address.created": {
+		"category.created": {
             // Register handler to the "other" group instead of "payment" group.
             handler(ctx) {
-                console.log("Payload:", ctx.params);
-                console.log("Sender:", ctx.nodeID);
-                console.log("Metadata:", ctx.meta);
-                console.log("The called event name:", ctx.eventName);
+                console.log("Payload from Greeter Service  =>", ctx.params);
+                console.log("Sender from Greeter Service  =>", ctx.nodeID);
+                console.log("Metadata from Greeter Service  =>", ctx.meta);
+                console.log("The called event name from Greeter Service  =>", ctx.eventName);
             }
         }
 	},

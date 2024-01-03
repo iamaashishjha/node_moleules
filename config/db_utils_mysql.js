@@ -1,6 +1,27 @@
 // Load variables from .env
 require('dotenv').config();
-const mysql = require('mysql2');
+const mysql = require("mysql2");
+
+// import mysql from "mysql2";
+
+// class DBUtilsMysql {
+
+//     private dbConfig = {
+//         host: process.env.DB_HOST,
+//         port: process.env.DB_PORT,
+//         database: process.env.DB_DATABASE,
+//         user: process.env.DB_USERNAME,
+//         password: process.env.DB_PASSWORD,
+//     }
+
+
+//     private async createConnection{
+//         return mysql.createConnection(this.dbConfig);
+//     };
+
+
+// }
+// module.exports = DBUtilsMysql;
 
 const dbConfig = {
     host: process.env.DB_HOST,
@@ -50,8 +71,8 @@ const executeQuery = async (connection, sql, values = null) => {
     if (values) {
         const [rows, fields] = connection.query(sql, values);
         console.log(rows);
-    // return result;
-    return { result: rows };
+        // return result;
+        return { result: rows };
     } else {
         console.log("SQL =>", sql);
         // const [rows, fields] = connection.query(sql);

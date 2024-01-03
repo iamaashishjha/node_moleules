@@ -24,7 +24,7 @@ module.exports = {
         }
     },
     logLevel: "info",
-    transporter: null,
+    transporter: "NATS",
     cacher: null,
     serializer: "JSON",
     requestTimeout: 10 * 1000,

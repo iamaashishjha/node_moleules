@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
   "scripts": {
-    "dev": "ts-node ./node_modules/moleculer/bin/moleculer-runner.js --repl --hot services/**/*.service.js",
+    "dev": "node ./node_modules/moleculer/bin/moleculer-runner.js --repl --hot services/**/*.service.ts",
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
     "ci": "jest --watch",

@@ -1,11 +1,8 @@
-"use strict";
-// import { Service, ServiceBroker, Context } from "moleculer";
-// const { EntryManager } = require('../managers/EntryManager'); // Use the correct path
 import { Service, ServiceBroker, Context } from "moleculer";
-import EntryManager from "../managers/EntryManager";
+import LauncherManager from "../managers/LauncherManager";
 
 export default class Launcher extends Service {
-	private launcher: EntryManager = new EntryManager();
+	private launcher: LauncherManager = new LauncherManager();
     public constructor(public broker: ServiceBroker) {
 		super(broker);
 		this.parseServiceSchema({

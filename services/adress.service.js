@@ -4,6 +4,7 @@ const AddressManager = require('../managers/AddressManager.js');
 const { fetchMySqlConfigs } = require("../config/db_utils_mysql.js");
 const DbService = require("moleculer-db");
 const { Service, ServiceBroker, Context } = require("moleculer");
+const ErrorMixin = require('../mixins/ErrorMixins.js');
 
 const manager = new AddressManager();
 const broker = new ServiceBroker();
@@ -12,6 +13,13 @@ const broker = new ServiceBroker();
 module.exports = {
 	name: "address",
 	
+    mixins: [ErrorMixin],
+
+    hooks: {
+        error: {
+            "*": ['globalErrorHandler']
+        }
+    },
 	/**
 	 * Settings
 	 */
@@ -41,7 +49,9 @@ module.exports = {
 			},
 			async handler() {
 				// Emit the "user.created" event
-				broker.emit("address.created", manager.store);
+				// broker.emit("address.created", manager.store);
+				// console.log("Address Get => ", manager);
+				// console.log("Address Get manager store => ", manager.store);
 				return manager.store;
 			}
 		}
