@@ -1,18 +1,18 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { Service, ServiceBroker, Context } from "moleculer";
-import { ApolloService } from "moleculer-apollo-server";
+// import { ApolloService } from "moleculer-apollo-server";
 import ApiGateway from "moleculer-web";
 
 export default class ApiService extends Service {
 	public constructor(broker: ServiceBroker) {
 		super(broker);
-		// @ts-ignore
+		
 		this.parseServiceSchema({
 			name: "api",
 			mixins: [ApiGateway],
 			// More info about settings: https://moleculer.services/docs/0.14/moleculer-web.html
 			settings: {
-				port: process.env.PORT || 3000,
+				port: process.env.PORT || 8000,
 
 				routes: [
 					{

@@ -2,8 +2,8 @@
 /* eslint-disable camelcase */
 import { RowDataPacket } from "mysql2";
 import { LauncherStore } from "../../config/types";
-export const HotspotConfigFetcher = {
-	query_name: "HotspotConfigFetcher",
+export const StbFetcher = {
+	query_name: "StbFetcher",
 	query: `
     SELECT DISTINCT
     SUBSTR(SERIAL, 1, 10) AS serial_prefix,
@@ -25,7 +25,7 @@ STATUS
 	},
 };
 
-export const StbFetcher = {
+export const HotspotConfigFetcher = {
 	query_name: "HotspotConfigFetcher",
 	query: `
             SELECT
@@ -40,8 +40,10 @@ export const StbFetcher = {
                 h.stb_id = s.id
             `,
 	callback: (rows: RowDataPacket[], store: LauncherStore) => {
-		rows.forEach((row) => {
-			store.hotspots.set(row.serial, {
+		rows.forEach((row, index) => {
+			console.log("Hotspot Config Fetcher => ", index)
+			store.hotspots.set(index.toString(), {
+				serial: row.serial,
 				mode: row.mode,
 				password: row.password,
 				ssid: row.ssid,

@@ -30,7 +30,42 @@ export default class Launcher extends Service {
 						path: "/hello"
 					},
 					async handler() {
-						return "Hello Moleculer From Entry";
+						return "Hello Moleculer From Launcher Service";
+					}
+				},
+				
+				"get-launcher-box-model-prefix": {
+					rest: {
+						method: "GET",
+						path: "/"
+					},
+					async handler(ctx) {
+						const data = Object.fromEntries(this.launcher.store.box_model_prefix);
+						
+						// Success response
+						return {
+							data,
+							errors: null,
+							message: "Request successful",
+							statusCode: 200
+						};
+					}
+				},
+		
+				"get-launcher-hotspots": {
+					rest: {
+						method: "GET",
+						path: "/"
+					},
+					async handler(ctx) {
+						const data = Object.fromEntries(this.launcher.store.hotspots);
+						// Success response
+						return {
+							data,
+							errors: null,
+							message: "Request successful",
+							statusCode: 200
+						};
 					}
 				},
 			},

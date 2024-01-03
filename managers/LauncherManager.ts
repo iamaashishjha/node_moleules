@@ -1,6 +1,8 @@
 import LauncherStore from "../stores/LauncherStore";
 import { HotspotConfigFetcher, StbFetcher } from "../stores/fetchers/AllDataFetchers";
 import mysql from "mysql2/promise";
+require('dotenv').config();
+
 
 import { FetchResult, FetchPromise } from "../config/types";
 
@@ -32,6 +34,15 @@ export default class LauncherManager {
 
 	private async appendDbResultsToLauncherStore(){
 		console.log(new Date(), ": Connecting MySQL");
+		// console.log("\\** \n");
+		// console.log(new Date()+ " : ENV VARIABLES START => ");
+		// console.log(new Date()+ " : ENV DB HOST => "+ process.env.DB_HOST);
+		// console.log(new Date()+ " : ENV DB PORT => "+ process.env.DB_PORT);
+		// console.log(new Date()+ " : ENV DB DATABASE => "+ process.env.DB_DATABASE);
+		// console.log(new Date()+ " : ENV DB USERNAME => "+ process.env.DB_USERNAME);
+		// console.log(new Date()+ " : ENV DB PASSWORD => "+ process.env.DB_PASSWORD);
+		// console.log(new Date()+ " : ENV VARIABLES END \n \n**/ ");
+
 		const conn = await mysql.createConnection({
 			host: process.env.DB_HOST,
 			user: process.env.DB_USERNAME,
@@ -47,7 +58,7 @@ export default class LauncherManager {
 
 		this.fetchers.forEach(fetcher => {
 			console.log(new Date(), ": Executing", fetcher.query_name);
-			fetch_promises.push(this.fetch(conn, fetcher.query, fetcher.query_name));
+			fetch_promises.push(this.fetch(conn, fetcher.query, fetcher.query_name) as FetchPromise);
 		});
 
 		console.log(new Date(), ": Awaiting all DB promises");
